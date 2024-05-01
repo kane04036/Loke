@@ -7,3 +7,14 @@
 //
 
 import Foundation
+import Feature
+import SwiftUI
+
+@main
+struct LokeApp: App {
+    var body: some Scene {
+        WindowGroup {
+            loginView()
+        }
+    }
+}

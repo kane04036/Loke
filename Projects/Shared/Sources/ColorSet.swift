@@ -7,3 +7,8 @@
 //
 
 import Foundation
+import SwiftUI
+
+struct ColorSet {
+    public static var white = Color(white: 1)
+}
