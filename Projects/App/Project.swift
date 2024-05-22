@@ -8,6 +8,16 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
 
+var extendedInfo: [String: Plist.Value] = [
+    "ITSAppUsesNonExemptEncryption": false,
+    "UILaunchScreen": [],
+    "UISupportedInterfaceOrientations":
+        [
+            "UIInterfaceOrientationPortrait", // 인터페이스 방향을 세로만 지원.
+        ],
+    "UIUserInterfaceStyle": "Light"
+]
+
 let project = Project(name: "App",
                       organizationName: "projectG",
                       packages: [
@@ -18,12 +28,14 @@ let project = Project(name: "App",
                                        product: .app,
                                        bundleId: Project.bundleId,
                                        deploymentTarget: .iOS(targetVersion: Project.iOSTargetVersion, devices: .iphone),
-                                       infoPlist: .default,
+                                       infoPlist: .extendingDefault(with: extendedInfo),
                                        sources: ["Sources/**"],
-//                                       resources: ["Resources/**"],
+                                       resources: ["Resources/**"],
                                        dependencies: [
-                                        .project(target: "Feature", path: "../Feature"),
-                                        .project(target: "Shared", path: "../Shared")
+                                        .project(target: "Feature", path: "../Feature")
                                        ]
                                       )
                       ])
+
+
+

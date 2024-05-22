@@ -9,12 +9,30 @@
 import Foundation
 import Feature
 import SwiftUI
+import FirebaseCore
+import Shared
 
 @main
 struct LokeApp: App {
+    @StateObject var geometryInfo: GeometryInfo = .init()
+    @StateObject var appCoordinator: AppCoordinator = .init()
+    @StateObject var mapData: MapData = .init()
+    init(){
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            loginView()
+            GeometryReader(content: { geometry in
+                HomeView()
+                    .environmentObject(geometryInfo)
+                    .environmentObject(appCoordinator)
+                    .environmentObject(mapData)
+                    .onAppear(perform: {
+                        geometryInfo.initGeometry(geometryProxy: geometry)
+                    })
+                
+            })
         }
     }
 }

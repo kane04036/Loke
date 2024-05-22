@@ -19,7 +19,18 @@ let project = Project(name: "Shared",
                                        deploymentTarget: .iOS(targetVersion: Project.iOSTargetVersion, devices: .iphone),
                                        infoPlist: .default,
                                        sources: ["Sources/**"],
-                                       resources: ["Resources/**"]
+                                       resources: ["Resources/**"],
+                                       dependencies: [
+                                        .external(name: "FirebaseAuth"),
+                                        .external(name: "FirebaseFirestore"),
+                                        .external(name: "FirebaseMessaging"),
+                                        .external(name: "Alamofire")
+                                       ],
+                                       settings: Settings.settings(base: [
+                                        "HEADER_SEARCH_PATHS": "$(inherited) $(SRCROOT)/../../Tuist/Dependencies/SwiftPackageManager/.build/checkouts/gtm-session-fetcher/Sources/Core/Public",
+                                        "OTHER_LDFLAGS" : "-ObjC"
+
+                                       ])
                                       )
                       ])
 
