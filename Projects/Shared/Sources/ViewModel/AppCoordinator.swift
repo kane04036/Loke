@@ -20,11 +20,15 @@ public class AppCoordinator: ObservableObject {
         self.stack.append(destination)
     }
     
-    
+    public func goRootView() {
+        stack.removeAll()
+    }
 }
 
 public enum Page {
     case home
     case mypage
     case login
+    case signUp
+    case detail
 }

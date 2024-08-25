@@ -14,4 +14,5 @@ public struct ColorSet {
     public static var main = Color(red: 0.00, green: 0.52, blue: 1.00)
     public static var gray2 = Color(white: 0.74)
     public static var darkgray1 = Color(white: 0.2)
+    public static var darkgray2 = Color(white: 0.6)
 }

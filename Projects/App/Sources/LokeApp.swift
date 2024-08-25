@@ -14,13 +14,16 @@ import Shared
 
 @main
 struct LokeApp: App {
-    @StateObject var geometryInfo: GeometryInfo = .init()
-    @StateObject var appCoordinator: AppCoordinator = .init()
-    @StateObject var mapData: MapData = .init()
     init(){
         FirebaseApp.configure()
     }
     
+    @StateObject var geometryInfo: GeometryInfo = .init()
+    @StateObject var appCoordinator: AppCoordinator = .init()
+    @StateObject var mapData: MapData = .init()
+    @StateObject var regionInformation: RegionInformation = .init()
+    @StateObject var keyboardHandler: KeyboardHandler = .init()
+    @StateObject var signUpViewModel: SignUpViewModel = .init()
     var body: some Scene {
         WindowGroup {
             GeometryReader(content: { geometry in
@@ -28,6 +31,9 @@ struct LokeApp: App {
                     .environmentObject(geometryInfo)
                     .environmentObject(appCoordinator)
                     .environmentObject(mapData)
+                    .environmentObject(regionInformation)
+                    .environmentObject(keyboardHandler)
+                    .environmentObject(signUpViewModel)
                     .onAppear(perform: {
                         geometryInfo.initGeometry(geometryProxy: geometry)
                     })

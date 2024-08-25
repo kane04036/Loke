@@ -20,8 +20,8 @@ public struct HomeView: View {
     public var body: some View {
         NavigationStack(path: $appCoordinator.stack) {
             ZStack(alignment: Alignment(horizontal: .center, vertical: .top), content: {
+                Color.clear.ignoresSafeArea()
                 VStack(spacing: 0, content: {
-                    //상단바
                     HStack(alignment: .center, spacing: 10, content: {
                         Text(mapData.location)
                             .font(SharedFontFamily.Pretendard.semiBold.swiftUIFont(size: 18))
@@ -41,7 +41,7 @@ public struct HomeView: View {
                             }
                     })
                     .frame(maxWidth: .infinity)
-                    .frame(height: 50)
+                    .frame(height: 65)
                     .padding(.horizontal, 20)
                     .background(Color.white)
                     .padding(.top, geometryInfo.topInset)
@@ -49,11 +49,21 @@ public struct HomeView: View {
                     HomeMapView()
                         .ignoresSafeArea()
                     
-
                     
                     Spacer()
+                    
                 })
                 .ignoresSafeArea()
+                .overlay {
+                    ZStack(alignment: .bottom) {
+                        BottomSheetView()
+                            .onTapGesture {
+                                appCoordinator.push(destination: .detail)
+                            }
+                    }
+                    .frame(maxHeight: .infinity, alignment: .bottom)
+                    .ignoresSafeArea()
+                }
 
                
             })
@@ -62,6 +72,8 @@ public struct HomeView: View {
                 case .home: HomeView()
                 case .login: loginView()
                 case .mypage: loginView()
+                case .signUp: SignUpCenterView()
+                case .detail: DetailView()
                 }
             }
         }

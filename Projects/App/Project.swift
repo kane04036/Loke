@@ -15,7 +15,11 @@ var extendedInfo: [String: Plist.Value] = [
         [
             "UIInterfaceOrientationPortrait", // 인터페이스 방향을 세로만 지원.
         ],
-    "UIUserInterfaceStyle": "Light"
+    "UIUserInterfaceStyle": "Light",
+    "NSAppTransportSecurity": [
+        "NSAllowsArbitraryLoads": true
+    ],
+    "FirebaseAppDelegateProxyEnabled": false
 ]
 
 let project = Project(name: "App",
